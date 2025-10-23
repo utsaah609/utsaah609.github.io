@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FitFuel Meal Boxes</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #d0f0eb, #f9f9fb);
+      color: #1b2a41;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      padding: 0 20px;
+    }
+    header {
+      background: linear-gradient(90deg, #2a9d8f, #264653);
+      color: white;
+      padding: 30px 40px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(38,70,83,0.4);
+    }
+    header h1 {
+      font-size: 3rem;
+      letter-spacing: 2px;
+      margin: 0;
+      font-weight: 700;
+      text-shadow: 2px 2px 6px #0b524d;
+      transition: color 0.3s ease;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #264653;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: white;
+      padding: 15px 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: background 0.4s ease;
+      border-bottom: 4px solid transparent;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+    }
+    nav a:hover {
+      background: #2a9d8f;
+      border-bottom: 4px solid #e76f51;
+      color: #ffddb7;
+    }
+    .hero {
+      background: url('https://images.unsplash.com/photo-1528620046579-28e1ec06f08e?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+      padding: 0 20px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 0.3em;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      animation: fadeInDown 1s ease forwards;
+    }
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 1.2em;
+      font-weight: 500;
+      animation: fadeInUp 1s ease forwards;
+    }
+    .cta-button {
+      background: #e76f51;
+      color: white;
+      padding: 14px 38px;
+      font-size: 1.3rem;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      box-shadow: 0 0 15px #e76f51aa;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInUp 1.5s ease forwards;
+    }
+    .cta-button:hover {
+      background: #ff9a76;
+      box-shadow: 0 0 30px #ff9a7699;
+    }
+    section {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(38, 70, 83, 0.12);
+      padding: 40px 30px;
+      display: none;
+    }
+    section.active {
+      display: block;
+    }
+    h2 {
+      color: #264653;
+      font-weight: 800;
+      border-left: 5px solid #2a9d8f;
+      padding-left: 15px;
+      margin-bottom: 25px;
+      font-size: 2.4rem;
+      letter-spacing: 0.05em;
+    }
+    h3 {
+      color: #e76f51;
+      font-weight: 700;
+      margin-top: 20px;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+    ul, ol {
+      margin-left: 20px;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: #1b2a41dd;
+    }
+    #products ul li {
+      background: #d3ede9;
+      margin-bottom: 15px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: inset 0 0 10px #89cbb8;
+      transition: background 0.3s ease;
+    }
+    #products ul li:hover {
+      background: #a1ccc1;
+      cursor: pointer;
+      color: #08332a;
+      box-shadow: inset 0 0 15px #4a7a6f;
+    }
+    label {
+      font-weight: 700;
+      display: block;
+      margin-top: 15px;
+    }
+    select, input[type="radio"], input[type="text"], input[type="email"], textarea {
+      margin-top: 6px;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button.form-submit {
+      background-color: #2a9d8f;
+      color: white;
+      padding: 12px 25px;
+      font-weight: 700;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      margin-top: 25px;
+      width: 100%;
+      font-size: 1.1em;
+    }
+    button.form-submit:hover {
+      background-color: #206258;
+    }
+    footer {
+      background: #264653;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      font-size: 1rem;
+      margin-top: 80px;
+      box-shadow: 0 -6px 12px rgba(0,0,0,0.15);
+    }
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>FitFuel Meal Boxes</h1>
+  <p>Healthy Meals for Better Fitness</p>
+</header>
+
+<nav>
+  <a href="#" onclick="showPage('home')">Home</a>
+  <a href="#" onclick="showPage('about')">About Us</a>
+  <a href="#" onclick="showPage('products')">Products</a>
+  <a href="#" onclick="showPage('how-it-works')">How It Works</a>
+  <a href="#" onclick="showPage('platform')">Platform</a>
+  <a href="#" onclick="showPage('contact')">Contact</a>
+</nav>
+
+<!-- Home Page -->
+<section id="home" class="active">
+  <div class="hero">
+    <h1>Power Your Active Lifestyle</h1>
+    <p>Chef-prepared, customizable meal boxes delivered fresh to your door.</p>
+    <button class="cta-button" onclick="showPage('start-plan')">Start Your Plan</button>
+  </div>
+</section>
+
+<!-- About Us -->
+<section id="about">
+  <h2>About Us</h2>
+  <p><strong>Vision:</strong> To make fitness-focused eating accessible, convenient, and delicious.</p>
+  <p><strong>Mission:</strong> Providing balanced, chef-prepared meal boxes designed to support active lifestyles.</p>
+  <h3>Core Values</h3>
+  <ul>
+    <li>Health First</li>
+    <li>Sustainability</li>
+    <li>Convenience</li>
+    <li>Transparency</li>
+  </ul>
+</section>
+
+<!-- Products -->
+<section id="products">
+  <h2>Our Products</h2>
+  <p>Customizable meal boxes to fit your dietary needs:</p>
+  <ul>
+    <li>
+      <strong>Low-Carb Options</strong><br />
+      <em>Price:</em> $49.99 / week<br/>
+      <em>Ingredients:</em> Grilled chicken, leafy greens, avocado, almonds, olive oil dressing.
+    </li>
+    <li>
+      <strong>High-Protein Meals</strong><br />
+      <em>Price:</em> $59.99 / week<br/>
+      <em>Ingredients:</em> Lean beef, quinoa, broccoli, sweet potatoes, low-fat cheese.
+    </li>
+    <li>
+      <strong>Vegan Selections</strong><br />
+      <em>Price:</em> $45.99 / week<br/>
+      <em>Ingredients:</em> Tofu, chickpeas, kale, brown rice, tahini sauce.
+    </li>
+    <li>
+      <strong>Keto-Friendly Plans</strong><br />
+      <em>Price:</em> $64.99 / week<br/>
+      <em>Ingredients:</em> Salmon, eggs, spinach, cauliflower rice, coconut oil.
+    </li>
+  </ul>
+  <p>Choose from weekly, bi-weekly, or monthly subscriptions with nutritionist-approved meals tailored just for you.</p>
+</section>
+
+<!-- How It Works -->
+<section id="how-it-works">
+  <h2>How It Works</h2>
+  <ol>
+    <li>Select your meal plan and customize preferences.</li>
+    <li>Personalize meals with AI-powered recommendations.</li>
+    <li>Receive fresh meals delivered to your doorstep.</li>
+    <li>Track nutrition and progress with fitness tracker integration.</li>
+  </ol>
+</section>
+
+<!-- Platform -->
+<section id="platform">
+  <h2>Our Digital Platform</h2>
+  <ul>
+    <li>AI-driven meal personalization</li>
+    <li>Sync with popular fitness trackers</li>
+    <li>Subscription and delivery management</li>
+    <li>Secure online payment system</li>
+    <li>Community and nutrition tips</li>
+  </ul>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p>Questions? Reach out to our support team!</p>
+  <p>Email: support@fitfuelmealboxes.com</p>
+  <p>Phone: +1 (800) 555-1234</p>
+</section>
+
+<!-- Start Plan page -->
+<section id="start-plan">
+  <h2>Start Your Meal Plan</h2>
+  <form id="plan-form">
+    <label for="plan">Choose Your Subscription Plan:</label>
+    <select id="plan" name="plan" required>
+      <option value="">Select</option>
+      <option value="weekly">Weekly (5 meals) - $49.99</option>
+      <option value="biweekly">Bi-Weekly (10 meals) - $94.99</option>
+      <option value="monthly">Monthly (20 meals) - $179.99</option>
+    </select>
+
+    <label>Diet Preferences:</label>
+    <input type="radio" id="lowcarb" name="diet" value="Low-Carb" required />
+    <label for="lowcarb">Low-Carb</label><br />
+    <input type="radio" id="highprotein" name="diet" value="High-Protein" />
+    <label for="highprotein">High-Protein</label><br />
+    <input type="radio" id="vegan" name="diet" value="Vegan" />
+    <label for="vegan">Vegan</label><br />
+    <input type="radio" id="keto" name="diet" value="Keto" />
+    <label for="keto">Keto</label><br /><br />
+
+    <button type="button" onclick="proceedToCheckout()" class="form-submit">Proceed to Checkout</button>
+  </form>
+</section>
+
+<!-- Checkout page -->
+<section id="checkout">
+  <h2>Checkout</h2>
+  <form id="checkout-form">
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" name="name" required />
+
+    <label for="email">Email Address:</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="address">Delivery Address:</label>
+    <textarea id="address" name="address" rows="3" required></textarea>
+
+    <button type="submit" class="form-submit">Complete Order</button>
+  </form>
+</section>
+
+<footer>
+  <p>&copy; 2025 FitFuel Meal Boxes. All rights reserved.</p>
+</footer>
+
+<script>
+  // Function to show one page/section and hide others
+  function showPage(pageId) {
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+      section.classList.remove('active');
+    });
+    const page = document.getElementById(pageId);
+    if (page) {
+      page.classList.add('active');
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+  }
+
+  // Proceed from plan selection to checkout
+  function proceedToCheckout() {
+    const plan = document.getElementById('plan').value;
+    const diet = document.querySelector('input[name="diet"]:checked');
+    if (!plan || !diet) {
+      alert('Please select a subscription plan and diet preference.');
+      return;
+    }
+    showPage('checkout');
+  }
+
+  // Prevent form submission and show confirmation
+  document.getElementById('checkout-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    alert('Order complete! Thank you for choosing FitFuel.');
+    showPage('home');
+  });
+</script>
+
+</body>
+</html>
